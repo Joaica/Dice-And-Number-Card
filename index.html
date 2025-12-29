@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dice and Number Cards</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #050510;
+        font-family: 'Inter', sans-serif;
+        color: white;
+        overflow: hidden;
+      }
+      .font-orbitron {
+        font-family: 'Orbitron', sans-serif;
+      }
+      .perspective-table {
+        perspective: 1500px;
+      }
+      .table-surface {
+        transform: rotateX(60deg);
+        transform-style: preserve-3d;
+      }
+      .card-3d {
+        transform-style: preserve-3d;
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .glow-winner {
+        text-shadow: 0 0 10px #22d3ee, 0 0 20px #06b6d4, 0 0 40px #0891b2;
+      }
+      .matrix-bg {
+        background: radial-gradient(circle at center, #1a0b3e 0%, #050510 100%);
+      }
+      
+      .circuit-grid {
+        background-image: 
+          linear-gradient(rgba(34, 211, 238, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(34, 211, 238, 0.05) 1px, transparent 1px);
+        background-size: 50px 50px;
+        opacity: 0.2;
+      }
+
+      @keyframes tech-drift {
+        0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+        10% { opacity: 0.6; }
+        90% { opacity: 0.6; }
+        100% { transform: translateY(-100vh) translateX(30px) rotate(180deg); opacity: 0; }
+      }
+      .tech-particle {
+        position: fixed;
+        width: 4px;
+        height: 4px;
+        background: #22d3ee;
+        pointer-events: none;
+        z-index: 5;
+        animation: tech-drift linear infinite;
+      }
+
+      @keyframes scanline {
+        0% { transform: translateY(-100%); }
+        100% { transform: translateY(100vh); }
+      }
+      .scanline {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(to bottom, transparent, rgba(34, 211, 238, 0.2), transparent);
+        animation: scanline 8s linear infinite;
+        pointer-events: none;
+        z-index: 60;
+      }
+
+      .hologram-effect {
+        animation: holographic-flicker 5s infinite linear alternate-reverse;
+      }
+      @keyframes holographic-flicker {
+        0%, 100% { opacity: 0.9; transform: skew(0deg); filter: hue-rotate(0deg); }
+        33% { opacity: 0.75; transform: skew(0.2deg); filter: hue-rotate(5deg); }
+        66% { opacity: 0.95; transform: skew(-0.2deg); filter: hue-rotate(-5deg); }
+      }
+
+      .tech-border-cyan::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 8px;
+        height: 8px;
+        border-top: 1.5px solid #22d3ee;
+        border-left: 1.5px solid #22d3ee;
+      }
+      .tech-border-cyan::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 8px;
+        height: 8px;
+        border-bottom: 1.5px solid #a855f7;
+        border-right: 1.5px solid #a855f7;
+      }
+
+      .chip-glow {
+        box-shadow: 0 0 15px currentColor;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
